@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Component Intercommunication</title>
+</head>
+<body>
+  <div id="app">
+    <child-component :message="message" @show-log="printLog" />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+  <script>
+    Vue.component('child-component', {
+      template: `
+        <div>
+          <div>{{ message }}</div>
+          <button @click="showLog">SHOW LOG</button>
+        </div>
+      `,
+      props: {
+        message: String,
+      },
+      methods: {
+        showLog() {
+          this.$emit('show-log')
+        }
+      }
+    })
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          message: 'Hello Vue! passed from Parent Component'
+        }
+      },
+      methods: {
+        printLog() {
+          console.log('Received from Child Component')
+        }
+      }
+    })
+  </script>
+</body>
+</html>
