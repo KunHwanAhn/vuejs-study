@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v19.06.02
+- Vue Router
+- Vue with HTTP
+- Vue Template
+- Vue Project Structure
+
 ## v19.06.01
 - helloVue
 - Vue Lifecycle
