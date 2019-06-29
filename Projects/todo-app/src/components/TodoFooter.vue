@@ -9,12 +9,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'TodoFooter',
   methods: {
+    ...mapActions(['removeAll']),
     clearTodoList() {
-      this.$emit('clear-todo-list')
-    }
+      this.removeAll()
+    },
   }
 }
 </script>
