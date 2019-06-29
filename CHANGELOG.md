@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v19.06.04
+- Apply Vuex to TODO App Project
+
 ## v19.06.03
 - TODO App Project
 

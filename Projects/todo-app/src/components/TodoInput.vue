@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import Modal from './common/Modal'
 
 export default {
@@ -48,9 +50,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      storeAddTodo: 'addTodo',
+    }),
     addTodo() {
       if (this.newTodoItem !== '') {
-        this.$emit('add-todo', this.newTodoItem)
+        this.storeAddTodo(this.newTodoItem)
         this.clearTodoItem()
       } else {
         this.showModal = true

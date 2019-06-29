@@ -18,17 +18,19 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'TodoList',
-  props: {
-    todoItems: {
-      type: Array,
-      required: true,
-    }
+  computed: {
+    ...mapState(['todoItems']),
   },
   methods: {
+    ...mapActions({
+      storeRemoveTodo: 'removeTodo',
+    }),
     removeTodo(todoItem, index) {
-      this.$emit('remove-todo', todoItem, index)
+      this.storeRemoveTodo({ todoItem, index })
     }
   }
 }

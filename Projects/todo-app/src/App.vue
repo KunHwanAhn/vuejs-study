@@ -1,17 +1,15 @@
 <template>
   <div>
     <todo-header />
-    <todo-input
-      @add-todo="addTodo" />
-    <todo-list
-      :todo-items="todoItems"
-      @remove-todo="removeTodo" />
-    <todo-footer
-      @clear-todo-list="clearTodoList" />
+    <todo-input />
+    <todo-list />
+    <todo-footer />
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import TodoHeader from './components/TodoHeader'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
@@ -25,31 +23,15 @@ export default {
     TodoList,
     TodoFooter,
   },
-  data() {
-    return {
-      todoItems: [],
-    }
-  },
   created() {
     if (localStorage.length > 0) {
       for (let index = 0; index < localStorage.length; index++) {
-        this.todoItems.push(localStorage.key(index))
+        this.addTodo(localStorage.key(index))
       }
     }
   },
   methods: {
-    addTodo(newTodoItem) {
-      localStorage.setItem(newTodoItem, newTodoItem)
-      this.todoItems.push(newTodoItem)
-    },
-    removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem)
-      this.todoItems.splice(index, 1)
-    },
-    clearTodoList() {
-      localStorage.clear()
-      this.todoItems = []
-    }
+    ...mapActions(['addTodo']),
   }
 }
 </script>
