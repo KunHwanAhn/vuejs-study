@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v19.06.05
+- 문서 추가
+
 ## v19.06.04
 - Apply Vuex to TODO App Project
 
